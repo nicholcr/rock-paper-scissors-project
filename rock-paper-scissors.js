@@ -32,16 +32,18 @@ function playGame() {
         playRound(humanSelection, computerSelection);
     }
 
-    let gameResult = "";
-    if (humanScore === computerScore) {
-        gameResult = "You tied";
-    } else if (humanScore > computerScore) {
-        gameResult = "You win";
-    } else {
-        gameResult = "You lose";
+    const gameResult = function () {
+        if (humanScore === computerScore) {
+            return "You tied";
+        } else if (humanScore > computerScore) {
+            return "You win";
+        } else {
+            return "You lose";
+        }
     }
 
-    return gameResult + " - final score User: " + humanScore + ", Computer: " + computerScore
+    const gameOverMessage = gameResult() + " - final score User: " + humanScore + ", Computer: " + computerScore;
+    return gameOverMessage;
 }
 
 console.log(playGame());
