@@ -1,3 +1,7 @@
+let humanScore = 0;
+let computerScore = 0;
+
+
 function getComputerChoice() {
     let computerChoice = ["rock", "paper", "scissors"];
     let index = Math.floor(Math.random() * 3);
@@ -9,22 +13,19 @@ function getHumanChoice() {
     return userChoice.toLowerCase();
 }
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-
-    function playRound(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) {
-            // do nothing
-        } else if (humanChoice === "rock" && computerChoice === "scissors"
-            || humanChoice === "scissors" && computerChoice === "paper"
-            || humanChoice === "paper" && computerChoice === "rock") {
-            humanScore++;
-        } else {
-            computerScore++;
-        }
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        // do nothing
+    } else if (humanChoice === "rock" && computerChoice === "scissors"
+        || humanChoice === "scissors" && computerChoice === "paper"
+        || humanChoice === "paper" && computerChoice === "rock") {
+        humanScore++;
+    } else {
+        computerScore++;
     }
+}
 
+function playGame() {
     for (let i = 1; i < 6; i++) {
         const computerSelection = getComputerChoice();
         const humanSelection = getHumanChoice();
