@@ -1,8 +1,3 @@
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
     let computerChoice = ["rock", "paper", "scissors"];
     let index = Math.floor(Math.random() * 3);
@@ -14,22 +9,39 @@ function getHumanChoice() {
     return userChoice.toLowerCase();
 }
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        return "You both chose the same move!"
-    } else if (humanChoice === "rock" && computerChoice === "scissors" 
-        || humanChoice === "scissors" && computerChoice === "paper" 
-        || humanChoice === "paper" && computerChoice === "rock") {
-            return "You win!"
-            humanScore++;
-    } else {
-        return "You lose..."
-        computerScore++;
-    }
-}
-
 function playGame() {
-    
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice === computerChoice) {
+            // do nothing
+        } else if (humanChoice === "rock" && computerChoice === "scissors"
+            || humanChoice === "scissors" && computerChoice === "paper"
+            || humanChoice === "paper" && computerChoice === "rock") {
+            humanScore++;
+        } else {
+            computerScore++;
+        }
+    }
+
+    for (let i = 1; i < 6; i++) {
+        const computerSelection = getComputerChoice();
+        const humanSelection = getHumanChoice();
+
+        playRound(humanSelection, computerSelection);
+    }
+
+    let gameResult = "";
+    if (humanScore === computerScore) {
+        gameResult = "You tied";
+    } else if (humanScore > computerScore) {
+        gameResult = "You win";
+    } else {
+        gameResult = "You lose";
+    }
+
+    return gameResult + " - final score User: " + humanScore + ", Computer: " + computerScore
 }
 
-console.log(playRound(humanSelection, computerSelection));
+console.log(playGame());
